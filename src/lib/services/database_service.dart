@@ -10,7 +10,8 @@ class DatabaseService {
       final prefs = await SharedPreferences.getInstance();
       final todosJson = prefs.getStringList(_todosKey) ?? [];
       return todosJson
-          .map((todo) => TodoModel.fromJson(json.decode(todo)))
+          .map((todo) => TodoModel.fromJson(
+              json.decode(todo) as Map<String, dynamic>))
           .toList();
     } catch (e) {
       return [];
